@@ -23,7 +23,10 @@
 
 
 	<input type="submit" class="MiBotonUTN" name="btnIngreso" id="btnIngreso" onclick="llamada()" >
-	
+	<input type="submit" class="MiBotonUTN" name="btnEgreso" id="btnEgreso" onclick="llamada()" >
+	<input type="submit" class="MiBotonUTN" name="btnGrillaEstacionados" id="btnGrillaEstacionados" onclick="llamada()" >
+	<input type="submit" class="MiBotonUTN" name="btnGrillaRecaudado" id="btnGrillaRecaudado" onclick="llamada()" >
+	<input type="submit" class="MiBotonUTN" name="btnGrillaUsuarios" id="btnGrillaUsuarios" onclick="llamada()" >
 </div>
 
 

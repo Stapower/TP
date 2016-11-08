@@ -1,7 +1,7 @@
 <?php
 class Estacionamiento
 {
-	public $id;
+	public $id=1;
  	public $patente;
   	public $fechaEntrada;
   	public $fechaSalida;
@@ -53,13 +53,22 @@ class Estacionamiento
   
 	 public function InsertarElVehiculo()
 	 {
-	 			$date = new DateTime();
-	 			$this->fechaEntrada = $date->format('Y-m-d H:i:s');
+                   try{
+	 			//$date = new DateTime();
+	 			//$this->fechaEntrada = $date->format('Y-m-d H:i:s');
 
 				$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-				$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into Estacionamiento (patente,fechaEntrada)values('$this->patente','$this->fechaEntrada')");
-				$consulta->execute();
-				return $objetoAccesoDato->RetornarUltimoIdInsertado();
+				var_dump($objetoAccesoDato);
+				$consulta =$objetoAccesoDato->RetornarConsulta('INSERT INTO estacionamiento (patente,fechaIngreso) values (?, ?)');
+				$consulta->execute(array("abc123", "2012-12-12"));
+
+				//return $objetoAccesoDato->RetornarUltimoIdInsertado();
+                        }
+                     catch(Exception $e)
+                    { 
+                     print "Error!: " . $e->getMessage(); 
+                     die();
+                    }
 	 }
 
 	  /*public function ModificarCdParametros()

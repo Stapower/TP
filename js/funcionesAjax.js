@@ -1,26 +1,29 @@
 function llamada()
 {
 	alert("aca estamos");
-	var patente = getElementsByTagName('patente');
-
+	
+	var patente = document.getElementById('patente').value;
+	alert(patente);
 
 	$.ajax({
 		url : "nexo.php",
 		type : "POST",
-		data : {queHacer : "alta" , patente : patente }
+		//contentType: "application/json; charset=utf-8",
+   		//dataType: "json",
+		data : {queHacer : "alta", patente : patente }
 
 	})
 	.then(function(retorno)
 	{	
 		console.log(retorno);
-		alert(".then" + retorno);
+		alert("Ok "+retorno);
+
 	},function(retorno){
-		console.log("fail " + retorno);
+		console.log(retorno);
 	});
 	
-
 }
-
+/*
 
 function MostrarError()
 {
@@ -97,4 +100,4 @@ function MostarLogin()
 		//alert("siempre "+retorno.statusText);
 
 	});
-}
+}*/
