@@ -1,11 +1,11 @@
 <?php 
-session_start();
-if(isset($_SESSION['registrado']))
+//session_start();
+if(true)//isset($_SESSION['registrado']))
 {
 	require_once("clases/AccesoDatos.php");
 	require_once("clases/Estacionamiento.php");
 	$arrayDeVehiculos=Estacionamiento::TraerTodoLosVehiculosEstacionados();
-	echo "<h2> Bienvenido: ". $_SESSION['registrado']."</h2>";
+	//echo "<h2> Bienvenido: ". $_SESSION['registrado']."</h2>";
 
  ?>
 <table class="table"  style=" background-color: beige;">
@@ -20,7 +20,7 @@ if(isset($_SESSION['registrado']))
 
 foreach ($arrayDeVehiculos as $vehiculo) {
 	echo"<tr>
-			<td><a onclick='ExtraerVehiculo($vehiculo->patente)' class='btn btn-warning'> <span class='glyphicon glyphicon-pencil'>&nbsp;</span>Retirar</a></td>
+			<td><a onclick='ExtraerVehiculo($arrayDeVehiculos->patente)' class='btn btn-warning'> <span class='glyphicon glyphicon-pencil'>&nbsp;</span>Retirar</a></td>
 			<td>$vehiculo->patente</td>
 			<td>$vehiculo->fechaEntrada</td>
 			

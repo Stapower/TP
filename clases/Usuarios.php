@@ -1,12 +1,35 @@
 <?php
-class Estacionamiento
+class Usuario
 {
 	public $id;
- 	public $patente;
-  	public $fechaEntrada;
-  	public $fechaSalida;
-  	public $fechaActual;
-  	public $valor;
+ 	public $usuario;
+  	public $contraseña;
+  	public $rol;
+  	
+    public function ConsultarUsuario()
+    {
+    	 try{
+	 			//$date = new DateTime();
+	 			//$this->fechaEntrada = $date->format('Y-m-d H:i:s');
+
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+                        var_dump($objetoAccesoDato);
+		 $consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM Usuarios WHERE usuario = $this->usuario");
+                        
+
+
+		 return $consulta->fetchAll(PDO::FETCH_CLASS, "Usuario");	
+		//$consulta->execute(array($this->patente, "2012-12-12"));
+                       
+		//return $objetoAccesoDato->RetornarUltimoIdInsertado();
+             }
+             catch(Exception $e)
+            { 
+             print "Error!: " . $e->getMessage(); 
+             die();
+            }
+    }
+
 
 
   	/*public function ExtraerVehiculo($patenteABorrar)
@@ -53,7 +76,7 @@ class Estacionamiento
 			return $consulta->execute();
 
 	 }*/
-	public function ProbandoEstacionamiento()
+	public function ProbandoUsuario()
 	 {
 	 	return "pasaste por estacionamiento.php";
 	 }

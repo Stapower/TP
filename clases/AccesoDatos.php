@@ -11,7 +11,7 @@ class AccesoDatos
             $usuario = 'root';//'id135609_stapower';
             $contraseña = '';//'t38127739';
             //$mbd = new PDO($dsn, $usuario, $contraseña, array(PDO::ATTR_EMULATE_PREPARES => false,PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-            $this->objetoPDO = new PDO('mysql:host=localhost;dbname=id135609_dbtomas;charset=utf8', 'root', '', array(PDO::ATTR_EMULATE_PREPARES => false,PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $this->objetoPDO = new PDO('mysql:host=localhost;dbname=id135609_dbtomas;charset=utf8', 'id135609_stapower', 't38127739', array(PDO::ATTR_EMULATE_PREPARES => false,PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
                 //$mbd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      
             $this->objetoPDO->exec("SET CHARACTER SET utf8");

@@ -1,17 +1,17 @@
-function BorrarCD(idParametro)
+function RetirarVehiculo(patente)
 {
 	//alert(idParametro);
 		var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"post",
 		data:{
-			queHacer:"BorrarCD",
-			id:idParametro	
+			queHacer:"Baja",
+			patente : patente	
 		}
 	});
 	funcionAjax.done(function(retorno){
-		Mostrar("MostrarGrilla");
-		$("#informe").html("cantidad de eliminados "+ retorno);	
+		llamada("MostrarEstacionados");
+		$("#Estacionados").html("cantidad de eliminados "+ retorno);	
 		
 	});
 	funcionAjax.fail(function(retorno){	

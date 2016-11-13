@@ -1,16 +1,16 @@
-function llamada()
+function llamada(queMostrar)
 {
 	alert("aca estamos");
 	
 	var patente = document.getElementById('patente').value;
-	alert(patente);
-
+	alert(patente + "hooolaaa");
+        alert(queMostrar);
 	$.ajax({
 		url : "nexo.php",
 		type : "POST",
 		//contentType: "application/json; charset=utf-8",
    		//dataType: "json",
-		data : {queHacer : "alta", patente : patente }
+		data : {queHacer : queMostrar, patente : patente }
 
 	})
 	.then(function(retorno)
