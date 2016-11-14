@@ -1,17 +1,17 @@
 <?php 
 //session_start();
-if(true)//isset($_SESSION['registrado']))
+if(isset($_SESSION['registrado']))
 {
 	require_once("clases/AccesoDatos.php");
 	require_once("clases/Estacionamiento.php");
-	$arrayDeVehiculos=Estacionamiento::TraerTodoLosVehiculosEstacionados();
+	$arrayDeVehiculos=Estacionamiento::TraerRecaudado();
 	//echo "<h2> Bienvenido: ". $_SESSION['registrado']."</h2>";
 
  ?>
-<table class="bounce"  style=" background-color: beige;">
+<table class="table"  style=" background-color: beige;">
 	<thead>
 		<tr>
-			<th>Retirar</th><th>Patente</th><th>FechaIngreso</th>
+			<th>Patente</th><th>Precio</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -20,9 +20,9 @@ if(true)//isset($_SESSION['registrado']))
 
 foreach ($arrayDeVehiculos as $vehiculo) {
 	echo"<tr>
-			<td><a onclick='RetirarVehiculo($vehiculo->id)' class='MiBotonUTN'> <span class='glyphicon glyphicon-pencil'>&nbsp;</span>Retirar</a></td>
+			
 			<td>$vehiculo->patente</td>
-			<td>$vehiculo->fechaIngreso</td>
+			<td>$vehiculo->precio</td>
 			
 		</tr>   ";
 }

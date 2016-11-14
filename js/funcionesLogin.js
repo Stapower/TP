@@ -11,7 +11,7 @@ function validarLogin()
 	
 
 	var funcionAjax=$.ajax({
-		url:"http://arganarastomas.000webhostapp.com/php/validarUsuario.php",
+		url:"validarUsuario.php",
 		type:"post",
 		data:{
 			recordarme:recordar,
@@ -22,19 +22,23 @@ function validarLogin()
 
 
 	funcionAjax.done(function(retorno){
-		//alert(retorno);
+		console.log(retorno);
 
 			if(retorno!="No-esta"){	
 				window.location = "https://arganarastomas.000webhostapp.com";
-				die();
+				//die();
+                              alert("logeo exitoso");
+                              alert(retorno);
 			}else
 			{
-				$("#informe").html("usuario o clave incorrecta");	
+                                alert("retorno else: " +retorno);
+				$("#Logeo").html("usuario o clave incorrecta");	
 				$("#formLogin").addClass("animated bounceInLeft");
 			}
 	});
 	funcionAjax.fail(function(retorno){
-		$("#informe").html(retorno.responseText);	
+                 alert("retorno fail: " + retorno);
+		$("#Logeo").html(retorno.responseText);	
 	});
 	
 }
@@ -45,9 +49,9 @@ function deslogear()
 		type:"post"		
 	});
 	funcionAjax.done(function(retorno){
-        setcookie("registro",$usuario,  time()-36000 , '/');
-		window.location = "https://arganarastomas.000webhostapp.com/partes/formLogin";
-        die();
+        alert("Usted fue deslogeado");
+	window.location = "https://arganarastomas.000webhostapp.com/partes/formLogin";
+        //die();
 	});	
 }
 function MostarBotones()

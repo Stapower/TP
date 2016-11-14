@@ -1,4 +1,3 @@
-
 <link href="https://arganarastomas.000webhostapp.com/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://arganarastomas.000webhostapp.com/css/ingreso.css" rel="stylesheet">
 <body>
@@ -16,14 +15,9 @@
 <body>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://arganarastomas.000webhostapp.com/js/funcionesAjax.js"></script>
+
 
 </body>
-
-
-
-
-
 
 <?php 
  
@@ -31,10 +25,10 @@ session_start();
 if(!isset($_SESSION['registro'])){  ?>
     <div id="formLogin" class="container">
 
-      <form  class="form-ingreso " onsubmit="validarLogin();return false;">
+      <form  class="form-ingreso">
         <h2 class="form-ingreso-heading">Ingrese sus datos</h2>
         <label for="correo" class="sr-only">Usuario</label>
-                <input type="email" id="user" class="form-control" placeholder="Usuario" required="" autofocus="" value="<?php  if(isset($_COOKIE["registro"])){echo $_COOKIE["registro"];}?>">
+                <input type="text" id="user" class="form-control" placeholder="Usuario" required="" autofocus="" value="<?php  if(isset($_COOKIE["registro"])){echo $_COOKIE["registro"];}?>">
         <label for="clave" class="sr-only">Clave</label>
         <input type="password" id="clave" minlength="4" class="form-control" placeholder="clave" required="">
         <div class="checkbox">
@@ -43,7 +37,7 @@ if(!isset($_SESSION['registro'])){  ?>
           </label>
           
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="validarLogin()" >Ingresar</button>
       <p>admin</p>
       <p>12345</p>
       </form>
@@ -54,10 +48,8 @@ if(!isset($_SESSION['registro'])){  ?>
 
   <?php }else{echo"<h3>usted '".$_SESSION['registrado']."' esta logeado. </h3>";?>         
     <button onclick="deslogear()" class="btn btn-lg btn-danger btn-block" type="button"><span class="glyphicon glyphicon-off">&nbsp;</span>Deslogearme</button>
-
+    
 <div id="informe">
 
 </div>
   <?php  }  ?>
-    
-  

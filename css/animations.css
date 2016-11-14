@@ -666,8 +666,8 @@ bounce
 	animation-name: bounce;
 	-webkit-animation-name: bounce;	
 
-	animation-duration: 1.6s;	
-	-webkit-animation-duration: 1.6s;
+	animation-duration: 0.7s;	
+	-webkit-animation-duration: 0.7s;
 
 	animation-timing-function: ease;	
 	-webkit-animation-timing-function: ease;	

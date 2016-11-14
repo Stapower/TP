@@ -8,23 +8,61 @@ class Estacionamiento
   	public $fechaActual;
   	public $valor;
 
-
-  	/*public function ExtraerVehiculo($patenteABorrar)
+	   	public function ExtraerVehiculo($idABorrar)
 	 {
-	 		$this->patente = $patenteABorrar;
 
+          try
+          {
 	 		$date=new DateTime(); //this returns the current date time
-			$hoy = $date->format('Y-m-d-H-i-s');
+			$hoy =  $date->format('Y-m-d H:i:s');
 	 		$this->fechaActual = $hoy;
+                     	$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			$consulta = $objetoAccesoDato->RetornarConsulta("
+							UPDATE Estacionamiento SET fechaEgreso ='$this->fechaActual'WHERE id='$this->id'");
+	
+             $consulta->execute();
 
-	 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+
+$consulta = $objetoAccesoDato->RetornarConsulta("SELECT * FROM Estacionamiento WHERE id='$idABorrar'");
+
+	
+             $consulta->execute();
+
+
+             $objeto =  $consulta->fetchObject('Estacionamiento');
+
+  
+  $ingreso = strtotime($objeto->fechaIngreso);
+  $egreso = strtotime($objeto->fechaEgreso);
+
+  $diffMinutes = round(($egreso - $ingreso) / 60);//3600 horas
+  												  //60 minutos
+			 $precio = $diffMinutes * (20/60);
+
+
+echo $precio;
+ $this->cobrar($precio, $idABorrar);
+
+
+          }	
+         catch(Exception $e)
+        { 
+         print "Error!: " . $e->getMessage(); 
+         die();
+        }
+	 }
+
+	 public function cobrar($precio, $id)
+	 {
+	 	                   	$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta("
-				UPDATE Estacionamiento SET 'fechaEgreso' =':fecha'	
-				WHERE patente=:patente");	
-				$consulta->bindValue(':patente',$this->patente, PDO::PARAM_INT, ':fecha',$this->fechaActual, PDO::PARAM_STR);		
-				$consulta->execute();
-				return $consulta->rowCount();
-	 }*/
+				UPDATE Estacionamiento SET precio = '$precio'	
+				WHERE id='$id'");	
+			$consulta->execute();
+			 return $consulta->fetchObject('Estacionamiento');
+				//$consulta->bindValue
+	 }
+
 
 	/*public static function BorrarCdPorAnio($año)
 	 {
@@ -61,14 +99,14 @@ class Estacionamiento
 	 public function InsertarElVehiculo()
 	 {
                    try{
-	 			//$date = new DateTime();
-	 			//$this->fechaEntrada = $date->format('Y-m-d H:i:s');
+	 			$date = new DateTime();
+	 			$this->fechaActual= $date->format('Y-m-d H:i:s');
 
 				$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
                                 var_dump($objetoAccesoDato);
 				$consulta =$objetoAccesoDato->RetornarConsulta('INSERT INTO Estacionamiento (patente,fechaIngreso) values (?, ?)');
                                 
-				$consulta->execute(array($this->patente, "2012-12-12"));
+				$consulta->execute(array($this->patente, $this->fechaActual));
                                
 				return $objetoAccesoDato->RetornarUltimoIdInsertado();
                         }
@@ -77,22 +115,6 @@ class Estacionamiento
                      print "Error!: " . $e->getMessage(); 
                      die();
                     }
-	 }
-
-	   	public function ExtraerVehiculo($idABorrar)
-	 {
-	 		$this->id= $idABorrar;
-
-	 		$date=new DateTime(); //this returns the current date time
-			$hoy = $date->format('Y-m-d-H-i-s');
-	 		$this->fechaActual = $hoy;
-                     	$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta =$objetoAccesoDato->RetornarConsulta("
-				UPDATE Estacionamiento SET fechaEgreso =?	
-				WHERE id=?");	
-				//$consulta->bindValue(':id',$this->id, PDO::PARAM_INT, ':fecha',$this->fechaActual, PDO::PARAM_STR);		
-				 return $consulta->execute(array($this->id,$this->fechaActual));
-				//return $consulta->rowCount();
 	 }
 
 	  /*public function ModificarCdParametros()
@@ -216,4 +238,5 @@ class Estacionamiento
 	  	return "Metodo mostar:".$this->patente."  ".$this->fechaEntrada."  ".$this->precio;
 	}
 
+	
 }

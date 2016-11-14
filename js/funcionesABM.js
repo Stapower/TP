@@ -1,15 +1,18 @@
-function RetirarVehiculo(patente)
+function RetirarVehiculo(id)
 {
-	//alert(idParametro);
+	alert(id);
 		var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"post",
 		data:{
 			queHacer:"Baja",
-			patente : patente	
+			id: id
 		}
 	});
 	funcionAjax.done(function(retorno){
+              
+                 
+                alert("dinero a cobrar: $" + retorno);
 		llamada("MostrarEstacionados");
 		$("#Estacionados").html("cantidad de eliminados "+ retorno);	
 		

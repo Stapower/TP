@@ -5,18 +5,23 @@ $clave=$_POST['clave'];
 $recordar=$_POST['recordarme'];
 
 $retorno;
-
+var_dump($_POST);
 
 try{
-	header('Access-Control-Allow-Origin: *');
-	include("https://arganarastomas.000webhostapp.com/clases/Usuarios.php");
+	//header('Access-Control-Allow-Origin: *');
+	//include("https://arganarastomas.000webhostapp.com/clases/Usuarios.php");
+	require_once("clases/Usuarios.php");
+        require_once("clases/AccesoDatos.php");
     
 	$user = new Usuario();
 	$user->usuario = $usuario;
-	$user = $user->ConsultarUsuario();
-
-
-	if($user->usuario==$usuario && $clave== $user->clave)
+        
+	$user = Usuario::ConsultarUsuario($usuario);
+echo"ahi va el usuario : ";
+       var_dump($user);
+   
+       echo "('usuraio ' . $user->usuario . ' usuarioIngresado: ' . $usuario . ' clave: ' . $user->contraseña . ' Clave ingresada ' . $clave)";
+	if($user->usuario==$usuario && $clave == $user->contraseña )
 	{			
 		if($recordar=="true")
 		{

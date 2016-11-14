@@ -1,10 +1,7 @@
 function llamada(queMostrar)
 {
-	alert("aca estamos");
-	
+	alert(queMostrar);
 	var patente = document.getElementById('patente').value;
-	alert(patente + "hooolaaa");
-        alert(queMostrar);
 	$.ajax({
 		url : "nexo.php",
 		type : "POST",
@@ -15,6 +12,7 @@ function llamada(queMostrar)
 	})
 	.then(function(retorno)
 	{	
+               $("#Estacionados").html(retorno);
 		console.log(retorno);
 		alert("Ok "+retorno);
 
@@ -23,6 +21,13 @@ function llamada(queMostrar)
 	});
 	
 }
+
+function redirect()
+{
+	window.location = "https://arganarastomas.000webhostapp.com/partes/formLogin.php";
+}
+/*
+
 /*
 
 function MostrarError()
@@ -57,7 +62,10 @@ function MostrarSinParametros()
 
 	});
 }
-
+function redirect()
+{
+	window.location = "https://arganarastomas.000webhostapp.com/partes/formLogin.php";
+}
 function Mostrar(queMostrar)
 {
 		//alert(queMostrar);

@@ -15,7 +15,7 @@ class AccesoDatos
                 //$mbd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      
             $this->objetoPDO->exec("SET CHARACTER SET utf8");
-            echo "Connected successfully";
+            //echo "Connected successfully";
             } 
         catch (PDOException $e) { 
             print "Error!: " . $e->getMessage(); 

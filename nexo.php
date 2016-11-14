@@ -1,11 +1,11 @@
 <?php
 require_once("clases/AccesoDatos.php");
 require_once("clases/Estacionamiento.php");
-var_dump($_POST);
+require_once("clases/Usuarios.php");
 $date=new DateTime(); //this returns the current date time
 $hoy = $date->format('Y-m-d-H-i-s');
 
-var_dump($_POST);
+
 $queHacer = $_POST['queHacer'];
 
 
@@ -31,21 +31,36 @@ switch ($queHacer)
 		 	break;
 		}
 		
-	case 'Baja':
+        case 'Baja':
+               try
+		{
+                //var_dump($_POST);
 		$auto = new Estacionamiento();
-		$auto->patente=$_POST['patente'];
+		$auto->id=$_POST['id'];
 		$auto->fechaActual  = $hoy;
-		$cantidad = $auto->ExtraerVehiculo();
+		$cantidad = $auto->ExtraerVehiculo($auto->id);
 		echo $cantidad;	
 		break;
-
+                }
+               	catch(Exception $ex)
+		{
+			echo $ex->getMessage();
+		 	break;
+		}
+                
+break;
+	
 	case 'MostrarEstacionados':
-		/*$auto = new Estacionamiento();
-		$Autos[] = {$auto->TraerTodoLosVehiculosEstacionados();}
-		echo $Autos[];	*/
-		include("partes/formGrilla.php");
-		break;
+	
+           include("partes/formGrilla.php");
+            break;
 
+	case 'Login':
+	    include("partes/formLogin.php");
+	    break;
+	/*case 'MostrarRecaudado':
+        include("partes/recaudado.php");
+      break;*/
 
 	default:
 		# code...
