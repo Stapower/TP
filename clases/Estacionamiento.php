@@ -233,6 +233,32 @@ echo $precio;
 			
 	}*/
 
+
+	public static function traerRecaudado()
+{
+	$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
+	$consula = $objetoAccesoDato->RetornarConsulta("SELECT * FROM Estacionamiento WHERE precio != NULL");
+	$consulta->execute();
+	$vechiculos = $consulta->fetchAll(PDO::FETCH_CLASS, "Estacionamiento");
+	$recaudado;
+
+	$contador = 0;
+	foreach ($vehiculos as $vehiculo) {
+		$tiempo = explode('-', $vehiculo->fechaEgreso);
+		$ahora = new DateTime('Y-m-d H:i:s');
+
+		if($ahora[2] == $tiempo[2])
+		{
+			$recaudado[$contador] = $vehiculo;
+		}
+		$contador++;
+	}
+
+
+	return $recaudado;
+
+}
+
 	public function mostrarDatos()
 	{
 	  	return "Metodo mostar:".$this->patente."  ".$this->fechaEntrada."  ".$this->precio;

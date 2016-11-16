@@ -25,7 +25,7 @@ echo "Bienvenido " . $_SESSION['usuario'];
 
 }?>
 
-     <div style="top: 0; right: 0;"><input type="button" class="MiBotonUTN" value="<?php if(isset($_SESSION['registrado'])){echo 'LogOut';} else{echo 'LogIn';}?>" onclick= "<?php if(isset($_SESSION['registrado'])){echo 'deslogear()';}else{echo "llamada('Login')";}?>" /></div>
+     <div style="top: 0; right: 0;"><input type="button" class="MiBotonUTN" value="<?php if(isset($_SESSION['registrado'])){echo 'LogOut';} else{echo 'LogIn';}?>" onclick= "<?php if(isset($_SESSION['registrado'])){echo 'deslogear()';}else{echo "LogIn('Login')";}?>" /></div>
 
 <div id="ingreso">
 <form >
@@ -42,14 +42,15 @@ echo "Bienvenido " . $_SESSION['usuario'];
 
 	if($_SESSION['rol'] == 'admin')
 	{
-			echo "<input type='submit' class='MiBotonUTN' name='btnGrillaRecaudado' id='btnGrillaRecaudado' onclick=llamada('MostrarRecaudado') value='Recaudado'>";
+			echo "<input type='submit' class='MiBotonUTN' name='btnGrillaRecaudado' id='btnGrillaRecaudado' onclicsk=llamada('MostrarRecaudado') value='Recaudado'>";
 
-            echo "<input type='submit' class='MiBotonUTN' name='btnGrillaUsuarios' id='btnGrillaUsuarios' onclick=llamada() value='Usuarios'>";
+            echo "<input type='submit' class='MiBotonUTN' name='btnGrillaUsuarios' id='btnGrillaUsuarios' onclick=usuarios('Usuarios') value='Usuarios'>";
 
                echo "<input type='submit' class='MiBotonUTN' name='btnIngreso' id='btnIngreso'onclick=llamada('alta') value='Alta'>";
 
 		echo "<input type='submit' class='MiBotonUTN' name='btnGrillaEstacionados' id='btnGrillaEstacionados' onclick=llamada('MostrarEstacionados') value='Estacionados'>";
 
+echo "<input type='submit' class='MiBotonUTN' name='btnEgreso' id='btnEgreso'onclick=llamada('Baja') value='Alta'>";
 
 	}
 	else
@@ -57,6 +58,8 @@ echo "Bienvenido " . $_SESSION['usuario'];
 		echo "<input type='submit' class='MiBotonUTN' name='btnIngreso' id='btnIngreso'onclick=llamada('alta') value='Alta'>";
 
 		echo "<input type='submit' class='MiBotonUTN' name='btnGrillaEstacionados' id='btnGrillaEstacionados' onclick=llamada('MostrarEstacionados') value='Estacionados'>";
+
+		echo "<input type='submit' class='MiBotonUTN' name='btnEgreso' id='btnEgreso'onclick=llamada('Baja') value='Alta'>";
 	}
 
 }?>

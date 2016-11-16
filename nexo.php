@@ -55,12 +55,16 @@ break;
            include("partes/formGrilla.php");
             break;
 
-	case 'Login':
-	    include("partes/formLogin.php");
+	case 'Login':);
+	    include("partes/formLogin.php"
 	    break;
-	/*case 'MostrarRecaudado':
+	case 'MostrarRecaudado':
         include("partes/recaudado.php");
-      break;*/
+      break;
+
+      	case 'Usuarios':
+        include("partes/Usuarios.php");
+      break;
 
 	default:
 		# code...
