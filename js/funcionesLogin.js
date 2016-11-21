@@ -4,8 +4,7 @@ function validarLogin()
 		var varClave=$("#clave").val();
 		var recordar=$("#recordarme").is(':checked');
 
-		alert("hola mundo");
-
+		
 		
 //$("#informe").html("<img src='imagenes/ajax-loader.gif' style='width: 30px;'/>");
 	
@@ -28,10 +27,10 @@ function validarLogin()
 				window.location = "https://arganarastomas.000webhostapp.com";
 				//die();
                               alert("logeo exitoso");
-                              alert(retorno);
+                             
 			}else
 			{
-                                alert("retorno else: " +retorno);
+                            
 				$("#Logeo").html("usuario o clave incorrecta");	
 				$("#formLogin").addClass("animated bounceInLeft");
 			}
@@ -42,6 +41,19 @@ function validarLogin()
 	});
 	
 }
+
+function Admin()
+{
+	document.getElementById('user').value='admin';
+	document.getElementById('clave').value='123456';
+}
+
+function Empleado()
+{
+	document.getElementById('user').value='Tomas';
+	document.getElementById('clave').value='123456';
+}
+
 function deslogear()
 {	
 	var funcionAjax=$.ajax({
@@ -50,7 +62,7 @@ function deslogear()
 	});
 	funcionAjax.done(function(retorno){
         alert("Usted fue deslogeado");
-	window.location = "https://arganarastomas.000webhostapp.com/partes/formLogin";
+	window.location = "https://arganarastomas.000webhostapp.com";
         //die();
 	});	
 }

@@ -1,10 +1,23 @@
-
-
 * {
   margin:0;
   padding:0;
 }
 
+.patente{
+	background:#FFFFFF url(igs/patente.jpg) no-repeat 4px 4px;
+	padding:4px 4px 4px 22px;
+	border:1px solid #CCCCCC;
+	width:230px;
+	height:18px;
+}
+
+#patente{
+	background:#FFFFFF url(igs/patente.jpg) no-repeat 4px 4px;
+	padding:4px 4px 4px 22px;
+	border:1px solid #CCCCCC;
+	width:230px;
+	height:18px;
+}
 body {
   margin: 0 auto;
   color:#f0f0f0;

@@ -1,10 +1,13 @@
 <?php 
-//session_start();
-if(isset($_SESSION['registrado']))
+
+
+session_start();
+if(isset($_SESSION['usuario']))
 {
 	require_once("clases/AccesoDatos.php");
 	require_once("clases/Estacionamiento.php");
 	$arrayDeVehiculos=Estacionamiento::TraerRecaudado();
+
 	//echo "<h2> Bienvenido: ". $_SESSION['registrado']."</h2>";
 
  ?>

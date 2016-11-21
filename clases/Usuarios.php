@@ -34,12 +34,35 @@ return $objeto;
 	 }
  	
 	
-      public static function TraerTodoLosUsuarios()
+      public static function TraerTodosLosUsuarios()
 	{
+		try{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta =$objetoAccesoDato->RetornarConsulta("select * from Usuarios where");
+			$consulta =$objetoAccesoDato->RetornarConsulta("select * from Usuarios");
 			$consulta->execute();			
-			return $consulta->fetchAll(PDO::FETCH_CLASS, "Usuarios");		
+			return $consulta->fetchAll(PDO::FETCH_CLASS, "Usuario");		
+		}
+		catch(Exception $e)
+		{
+ 			print "Error!: " . $e->getMessage(); 
+             die();
+		}
+	}
+
+	public static function Degradar($id)
+	{
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE Usuarios SET rol = 'empleado' WHERE id = '$id'");
+		$consulta->execute();			
+		return $consulta->rowCount();
+	}
+
+	public static function Ascender($id)
+	{
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+		$consulta =$objetoAccesoDato->RetornarConsulta("UPDATE Usuarios SET rol = 'admin' WHERE id = '$id'");
+		$consulta->execute();			
+		return $consulta->rowCount();
 	}
 }
 

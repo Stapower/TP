@@ -5,7 +5,7 @@ $clave=$_POST['clave'];
 $recordar=$_POST['recordarme'];
 
 $retorno;
-var_dump($_POST);
+
 
 try{
 	//header('Access-Control-Allow-Origin: *');
@@ -17,10 +17,8 @@ try{
 	$user->usuario = $usuario;
         
 	$user = Usuario::ConsultarUsuario($usuario);
-echo"ahi va el usuario : ";
-       var_dump($user);
    
-       echo "('usuraio ' . $user->usuario . ' usuarioIngresado: ' . $usuario . ' clave: ' . $user->contraseña . ' Clave ingresada ' . $clave)";
+       //echo "('usuraio ' . $user->usuario . ' usuarioIngresado: ' . $usuario . ' clave: ' . $user->contraseña . ' Clave ingresada ' . $clave)";
 	if($user->usuario==$usuario && $clave == $user->contraseña )
 	{			
 		if($recordar=="true")

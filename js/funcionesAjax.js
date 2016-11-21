@@ -14,7 +14,7 @@ function llamada(queMostrar)
 	{	
                $("#Estacionados").html(retorno);
 		console.log(retorno);
-		alert("Ok "+retorno);
+		alert("a cobrar $"+retorno);
 
 	},function(retorno){
 		console.log(retorno);

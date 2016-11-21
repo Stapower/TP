@@ -50,9 +50,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 GENERAL STYLING
 *************************************************************************************/
 body {
-	background: #0d1424 url(../imagenes/body-bg2.jpg) no-repeat center top !important;
-	font: .81em/150% Arial, Helvetica, sans-serif;
-	color: #666;
+  background: #0d1424 url(../imagenes/body-bg2.jpeg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+
 }
 a {
 	color: #026acb;

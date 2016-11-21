@@ -38,8 +38,11 @@ if(!isset($_SESSION['registro'])){  ?>
           
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="button" onclick="validarLogin()" >Ingresar</button>
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="Admin()" >ADMIN</button>
+
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="Empleado()" >EMPLEADO</button>
       <p>admin</p>
-      <p>12345</p>
+      <p>123456</p>
       </form>
 
 

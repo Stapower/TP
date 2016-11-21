@@ -22,53 +22,99 @@ function RetirarVehiculo(id)
 	});	
 }
 
-function EditarCD(idParametro)
-{
-	var funcionAjax=$.ajax({
-		url:"nexo.php",
-		type:"post",
-		data:{
-			queHacer:"TraerCD",
-			id:idParametro	
-		}
-	});
-	funcionAjax.done(function(retorno){
-		var cd =JSON.parse(retorno);	
-		$("#idCD").val(cd.id);
-		$("#cantante").val(cd.cantante);
-		$("#titulo").val(cd.titulo);
-		$("#anio").val(cd.año);
-	});
-	funcionAjax.fail(function(retorno){	
-		$("#informe").html(retorno.responseText);	
-	});	
-	Mostrar("MostrarFormAlta");
-}
 
-function GuardarCD()
+function Alta()
 {
-		var id=$("#idCD").val();
-		var cantante=$("#cantante").val();
-		var titulo=$("#titulo").val();
-		var anio=$("#anio").val();
 
 		var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"post",
 		data:{
-			queHacer:"GuardarCD",
-			id:id,
-			cantante:cantante,
-			titulo:titulo,
-			anio:anio	
+			queHacer:"Mostrar_Usuario_Form"
+             }
+	});
+	funcionAjax.done(function(retorno){
+		//var cd =JSON.parse(retorno);	
+		//$("#idCD").val(cd.id);
+		//$("#cantante").val(cd.cantante);
+		//$("#titulo").val(cd.titulo);
+		//$("#anio").val(cd.año);
+		$("#formUsuario").val(retorno);
+	});
+	funcionAjax.fail(function(retorno){	
+		$("#formUsuario").html(retorno);	
+	});	
+	usuarios("Usuarios");
+}
+
+
+function GuardarUsuario(id)
+{
+		var funcionAjax=$.ajax({
+		url:"nexo.php",
+		type:"post",
+		data:{
+			queHacer:"Modificacion",
+			id: id	
 		}
 	});
 	funcionAjax.done(function(retorno){
-			Mostrar("MostrarGrilla");
-		$("#informe").html("cantidad de agregados "+ retorno);	
-		
+		//var cd =JSON.parse(retorno);	
+		//$("#idCD").val(cd.id);
+		//$("#cantante").val(cd.cantante);
+		//$("#titulo").val(cd.titulo);
+		//$("#anio").val(cd.año);
 	});
 	funcionAjax.fail(function(retorno){	
-		$("#informe").html(retorno.responseText);	
+		$("#formUsuario").html(retorno.responseText);	
 	});	
+	
+}
+
+function GuardarUsuario()
+{
+var funcionAjax=$.ajax({
+		url:"nexo.php",
+		type:"post",
+		data:{
+			queHacer:"Alta"
+			
+		}
+	});
+	funcionAjax.done(function(retorno){
+		//var cd =JSON.parse(retorno);	
+		//$("#idCD").val(cd.id);
+		//$("#cantante").val(cd.cantante);
+		//$("#titulo").val(cd.titulo);
+		//$("#anio").val(cd.año);
+		alert("guardado exitoso!");
+	});
+	funcionAjax.fail(function(retorno){	
+		$("#formUsuario").html(retorno.responseText);	
+	});	
+	
+}
+
+function Accion(id, queHacer)
+{
+	var funcionAjax=$.ajax({
+		url:"nexo.php",
+		type:"post",
+		data:{
+			id : id,
+			queHacer:queHacer			
+		}
+	});
+	funcionAjax.done(function(retorno){
+		//var cd =JSON.parse(retorno);	
+		//$("#idCD").val(cd.id);
+		//$("#cantante").val(cd.cantante);
+		//$("#titulo").val(cd.titulo);
+		$("#AMUser").val(retorno);
+		//alert("guardado exitoso!");
+
+	});
+	funcionAjax.fail(function(retorno){	
+				$("#AMUser").val(retorno);
+	});
 }

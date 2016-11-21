@@ -9,6 +9,9 @@ $hoy = $date->format('Y-m-d-H-i-s');
 $queHacer = $_POST['queHacer'];
 
 
+
+
+
 switch ($queHacer)
 {
 	case 'alta':
@@ -32,38 +35,58 @@ switch ($queHacer)
 		}
 		
         case 'Baja':
-               try
-		{
-                //var_dump($_POST);
+       try
+         {
+              if(!isset($_POST['patente']))
+              {
 		$auto = new Estacionamiento();
 		$auto->id=$_POST['id'];
 		$auto->fechaActual  = $hoy;
 		$cantidad = $auto->ExtraerVehiculo($auto->id);
 		echo $cantidad;	
+              }
+              else
+             {
+              Estacionamiento::ExtraerVehiculoPatente($_POST['patente']);
+             }
 		break;
-                }
-               	catch(Exception $ex)
+        }
+        catch(Exception $exe)
 		{
-			echo $ex->getMessage();
+			echo $exe->getMessage();
 		 	break;
 		}
                 
-break;
-	
 	case 'MostrarEstacionados':
 	
            include("partes/formGrilla.php");
+//Estacionamiento::Registros();
             break;
 
-	case 'Login':);
-	    include("partes/formLogin.php"
+	case 'Login':
+	    include("partes/formLogin.php");
 	    break;
 	case 'MostrarRecaudado':
         include("partes/recaudado.php");
       break;
 
       	case 'Usuarios':
-        include("partes/Usuarios.php");
+        include("partes/formUsuarios.php");
+
+      break;
+
+      case 'Mostrar_Usuario_Form':
+      include("partes/formAltaUsuario.php");
+      break;
+
+            case 'Ascender':
+    $res =   Usuario::Degradar($_POST['id']);
+    echo $res;
+      break;
+
+            case 'Degradar':
+      $res  = Usuario::Ascender($_POST['id']);
+      echo $res;
       break;
 
 	default:

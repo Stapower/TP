@@ -7,6 +7,45 @@ class Estacionamiento
   	public $fechaSalida;
   	public $fechaActual;
   	public $valor;
+public function ExtraerVehiculoPatente($patente)
+{
+try{
+	$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+	$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM Estacionamiento  WHERE patente='$patente'");	
+	$consulta->execute();
+         $obj = $consulta->fetchObject('Estacionamiento');
+$es = new Estacionamiento();
+	$es->id = $obj->id;
+return $es->ExtraerVehiculo($obj->id);
+}
+         catch(Exception $e)
+        { 
+         print "Error!: " . $e->getMessage(); 
+         die();
+        }
+}
+public static function Registros()
+{
+
+for ($i=0; $i <301 ; $i++) { 
+	
+	
+	$letraUno=chr(rand(65,90));
+	$letraDos=chr(rand(65,90));
+	$letraTres=chr(rand(65,90));
+
+	$numeroUno = rand(0,9);
+	$numeroDos = rand(0,9);
+	$numeroTres = rand(0,9);
+
+
+	$es = new Estacionamiento();
+	$es->patente = $letraUno.$letraDos.$letraTres.$numeroUno.$numeroDos.$numeroTres;
+ 
+	$es->InsertarElVehiculo();
+      }
+}
+
 
 	   	public function ExtraerVehiculo($idABorrar)
 	 {
@@ -236,19 +275,35 @@ echo $precio;
 
 	public static function traerRecaudado()
 {
+try{
+
 	$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
-	$consula = $objetoAccesoDato->RetornarConsulta("SELECT * FROM Estacionamiento WHERE precio != NULL");
+
+	$consulta = $objetoAccesoDato->RetornarConsulta("SELECT * FROM Estacionamiento WHERE precio IS NOT NULL AND precio > 0");
 	$consulta->execute();
+
 	$vechiculos = $consulta->fetchAll(PDO::FETCH_CLASS, "Estacionamiento");
+
 	$recaudado;
 
 	$contador = 0;
-	foreach ($vehiculos as $vehiculo) {
-		$tiempo = explode('-', $vehiculo->fechaEgreso);
-		$ahora = new DateTime('Y-m-d H:i:s');
+	foreach ($vechiculos as $vehiculo) {
 
-		if($ahora[2] == $tiempo[2])
+		$aux1= explode('-', $vehiculo->fechaEgreso);
+                
+                $otroAux= explode(':',$aux1[2]);
+                  $tiempo = explode(' ',$otroAux[0]);
+                
+
+		$date= new DateTime();
+                $aux = $date->format('Y-m-d H:i:s');
+                $aux2 = explode('-', $aux);
+                $aux3 = explode(':', $aux2[2]);
+                $ahora = explode(' ', $aux3[0]);
+
+		if($ahora[0] == $tiempo[0])
 		{
+
 			$recaudado[$contador] = $vehiculo;
 		}
 		$contador++;
@@ -256,6 +311,12 @@ echo $precio;
 
 
 	return $recaudado;
+}
+catch(Exception $e)
+{ 
+   print "Error!: " . $e->getMessage(); 
+   die();
+}
 
 }
 
